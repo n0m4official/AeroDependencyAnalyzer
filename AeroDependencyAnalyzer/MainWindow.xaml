@@ -1,0 +1,56 @@
+﻿<Window x:Class="AeroDependencyAnalyzer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Aircraft Systems Dependency Analyzer" Height="720" Width="1200"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="360" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Diagram area -->
+        <Border Grid.Column="0" Margin="10" BorderBrush="#444" BorderThickness="1" CornerRadius="8">
+            <Grid>
+                <Canvas x:Name="DiagramCanvas" Background="#101318"/>
+            </Grid>
+        </Border>
+
+        <!-- Sidebar -->
+        <Border Grid.Column="1" Margin="10" BorderBrush="#444" BorderThickness="1" CornerRadius="8" Padding="12">
+            <DockPanel LastChildFill="True">
+                <StackPanel DockPanel.Dock="Top">
+                    <TextBlock Text="Controls" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,10"/>
+
+                    <WrapPanel Margin="0,0,0,10">
+                        <Button x:Name="BtnAddSystem" Content="Add System" Width="155" Margin="0,0,8,8" Click="BtnAddSystem_Click"/>
+                        <Button x:Name="BtnAddDependency" Content="Add Dependency" Width="155" Margin="0,0,0,8" Click="BtnAddDependency_Click"/>
+                    </WrapPanel>
+
+                    <TextBlock Text="Selected System" FontSize="14" FontWeight="SemiBold" Margin="0,6,0,6"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                        <TextBlock Text="Name:" Width="60" VerticalAlignment="Center"/>
+                        <TextBox x:Name="TxtName" Width="250" TextChanged="TxtName_TextChanged"/>
+                    </StackPanel>
+
+                    <WrapPanel Margin="0,0,0,10">
+                        <Button Content="Nominal" Width="100" Margin="0,0,8,8" Click="SetNominal_Click"/>
+                        <Button Content="Degraded" Width="100" Margin="0,0,8,8" Click="SetDegraded_Click"/>
+                        <Button Content="Failed" Width="100" Margin="0,0,0,8" Click="SetFailed_Click"/>
+                    </WrapPanel>
+
+                    <WrapPanel Margin="0,0,0,10">
+                        <Button x:Name="BtnRunAnalysis" Content="Run Analysis" Width="155" Margin="0,0,8,8" Click="BtnRunAnalysis_Click"/>
+                        <Button x:Name="BtnClearAnalysis" Content="Clear Analysis" Width="155" Margin="0,0,0,8" Click="BtnClearAnalysis_Click"/>
+                    </WrapPanel>
+
+                    <TextBlock x:Name="TxtModeHint" Text="Mode: Normal" Foreground="#BBBBBB" TextWrapping="Wrap" Margin="0,6,0,12"/>
+                    <Separator/>
+                    <TextBlock Text="Explanations" FontSize="14" FontWeight="SemiBold" Margin="0,10,0,6"/>
+                </StackPanel>
+
+                <ListBox x:Name="LstExplanations"/>
+            </DockPanel>
+        </Border>
+    </Grid>
+</Window>
